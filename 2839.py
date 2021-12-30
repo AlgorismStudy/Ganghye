@@ -1,7 +1,3 @@
-def main():
-    print(solution())
-
-
 def solution():
     N = int(input())
     answer = 0
@@ -19,4 +15,4 @@ def solution():
 
 
 if __name__ == "__main__":
-    main()
+    solution()
