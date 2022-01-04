@@ -1,20 +1,16 @@
+import sys
 from collections import deque
 
-N, M, V = map(int, input().split())
-graph = {}
-for i in range(M):
-    a, b = map(int, input().split())
-    if a in graph:
-        graph[a] += [b]
-    else:
-        graph[a] = [b]
-    if b in graph:
-        graph[b] += [a]
-    else:
-        graph[b] = [a]
+N, M, V = map(int, sys.stdin.readline().split())
+graph = [[] for _ in range(N + 1)]
+for _ in range(M):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
-for i in list(graph.values()):
+for i in graph[1:]:
     i.sort()
+
 dfs_visited = [False] * (N + 1)
 dfs_answer = []
 
@@ -44,7 +40,6 @@ def bfs(graph, v, visited):
                 bfs_answer.append(i)
 
 
-print(graph)
 dfs(graph, V, dfs_visited)
 print(*dfs_answer, sep=" ")
 
