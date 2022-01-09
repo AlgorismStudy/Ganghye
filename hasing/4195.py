@@ -2,13 +2,11 @@ N = int(input())
 
 
 def dfs(v, visited, d):
-    cnt = 1
-    visited[v] = True
+    visited.append(v)
     for i in d[v]:
-        if not visited[i]:
-            cnt += 1
+        if i not in visited:
             dfs(i, visited, d)
-    return cnt
+    return len(visited)
 
 
 for _ in range(N):
@@ -17,10 +15,13 @@ for _ in range(N):
 
     for _ in range(M):
         per1, per2 = input().split()
-        if per1 in d:
-            d[per1] += [per2]
-        else:
+        if per1 not in d:
             d[per1] = [per2]
+            d[per2] = [per1]
+        else:
+            d[per1] += [per2]
+            d[per2] += [per1]
 
-        visited = [False] * len()
-        print(dfs(per1, visited, d))
+        print(d)
+        visited = []
+        # print(dfs(per1, visited, d))
