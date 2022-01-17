@@ -6,20 +6,19 @@ dy = [0, 0, -1, 1]
 T = int(input())
 
 
-def bfs(v, visited, graph):
+def bfs(v, visited):
     q = deque()
-    q.append(graph[v[1]][v[0]])
-    visited[v[1]][v[0]] = True
+    q.append(v)
     while(q):
         x, y = q.popleft()
         for _ in range(4):
-            nx = x + dx
-            ny = y + dy
-
+            nx = x + dx[i]
+            ny = y + dy[i]
             if nx < 0 or ny < 0 or nx >= m or ny >= n:
                 continue
-            visited[ny][nx] = True
-            q.append(graph[ny][nx])
+            if visited[nx][ny] == 1:
+                visited[nx][ny] += 1
+                q.append((nx, ny))
     return visited
 
 
@@ -30,5 +29,4 @@ for i in range(T):
         a, b = map(int, input().split())
         graph[b][a] = 1
 
-    visited = [[False] * m for _ in range(n)]
-    print(bfs((0, 0), visited, graph))
+    print(bfs((0, 0), graph))

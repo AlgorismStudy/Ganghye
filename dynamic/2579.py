@@ -14,5 +14,3 @@ for i in range(1, n):
         d[i] = max(d[i-3]+arr[i-1]+arr[i], d[i-2]+arr[i])
 
 print(d[-1])
-# 92%에서 런타임에러(배열인덱스 오류났던 이유: for문을 3부터 돌렸을때, n이 1or2이면 오류가 난다)
-# https://sungmin-joo.tistory.com/18
