@@ -1,3 +1,6 @@
+import sys
+
+
 def find(parent, a):
     if a != parent[a]:
         parent[a] = find(parent, parent[a])
@@ -13,6 +16,7 @@ def union(parent, a, b):
         parent[a] = b
 
 
+input = sys.stdin.readline
 n, m = map(int, input().split())
 graph = []
 parent = [i for i in range(n+1)]
